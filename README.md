@@ -59,7 +59,7 @@ To do simple all request passes `account id` in the url. Later we can improve by
 
 - **Account statement**  
 
-  ```curl GET <endPoint>/statement/{id} --header 'Authorization : barear <token>```
+  ```curl GET <endPoint>/statement/{id} --header "Authorization : Bearer <token>"```
   return Json object
   
   ```
@@ -76,7 +76,7 @@ To do simple all request passes `account id` in the url. Later we can improve by
   
 - **Account history**  
 
- ``curl GET <endPoint>/history/{id} --header 'Authorization : barear <token> ``
+ ``curl GET <endPoint>/history/{id} --header "Authorization : Bearer <token>" ``
  
  return JSON Object
    ```
@@ -108,11 +108,11 @@ To do simple all request passes `account id` in the url. Later we can improve by
 
 - **Account deposit**  
 
- ```curl POST <endPoint>/deposit/{id} "Content-Type: application/json" -d <data> --header 'Authorization : barear <token>```
+ ```curl POST <endPoint>/deposit/{id} "Content-Type: application/json" -d <data> --header "Authorization : Bearer <token>"```
  
   The body of the request contains mandatory *amount* in a json of the form:
   
-   ```curl GET <endPoint>/deposit/{id} "Content-Type: application/json" -d <data> --header 'Authorization : barear <token>```
+   ```curl GET <endPoint>/deposit/{id} "Content-Type: application/json" -d <data> --header "Authorization : Bearer <token>"```
    
     The body of the request contains mandatory *amount* in a json of the form:
   
@@ -124,7 +124,7 @@ To do simple all request passes `account id` in the url. Later we can improve by
   
   - **Account withdrawal**  
   
-   ``` curl POST <endPoint>/withdrawal/{id} "Content-Type: application/json" -d <data> --header 'Authorization : barear <token> ```
+   ``` curl POST <endPoint>/withdrawal/{id} "Content-Type: application/json" -d <data> --header "Authorization : Bearer <token>" ```
    
     The body of the request contains mandatory *amount* in a json of the form:
   
