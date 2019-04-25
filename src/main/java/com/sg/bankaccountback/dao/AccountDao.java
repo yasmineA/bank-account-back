@@ -45,6 +45,7 @@ public class AccountDao {
             if(amount>0){
                 addTransaction(account, Operation.DEPOSIT, amount);
                 account.setBalance(account.getBalance()+amount);
+                account.setLastUpdate(new Date());
             }
             else
                 throw new BadRequestException("INVALID AMOUNT");
@@ -77,6 +78,7 @@ public class AccountDao {
             if (amountToRetrieve <= account.getBalance()) {
                 addTransaction(account, Operation.WITHDRAWAL, amountToRetrieve);
                 account.setBalance(account.getBalance() - amountToRetrieve);
+                account.setLastUpdate(new Date());
             }
         }
         else

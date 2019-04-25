@@ -155,3 +155,9 @@ For withdrawal operation can take only one of the two possibilities *WITHDRAWAL*
 **[service](src/main/java/com/sg/bankaccountback/service) service** for additional functions needed for controller or dao
 
 **[tests](src/main/java/com/sg/bankaccountback/test) test** for unit and integration test
+
+### TODO
+- Swagger documentation
+- Delete balance field from Transaction and Account and create a model Balance to keep history
+- Separate Data treatment and checking condition using service.
+- adding filter date (begin,end) to get account history.

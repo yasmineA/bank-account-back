@@ -73,10 +73,13 @@ public class History {
         this.balance = balance;
     }
 
+    public void setLastUpdate(Date lastUpdate) {
+        this.lastUpdate = lastUpdate;
+    }
 
     public String getLastUpdate() {
         DateFormat formatD = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-        return formatD.format(this.createdAt);
+        return formatD.format(this.lastUpdate);
     }
 
     @Override
@@ -91,4 +94,5 @@ public class History {
                 ", lastUpdate='" + lastUpdate + '\'' +
                 '}';
     }
+
 }

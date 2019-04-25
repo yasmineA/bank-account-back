@@ -43,6 +43,10 @@ public class Account {
         return clientName;
     }
 
+    public void setLastUpdate(Date lastUpdate) {
+        this.lastUpdate = lastUpdate;
+    }
+
     public Status getStatus() {
         return status;
     }
