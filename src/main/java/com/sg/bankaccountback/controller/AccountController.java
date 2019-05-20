@@ -9,6 +9,8 @@ import com.sg.bankaccountback.model.dto.History;
 import com.sg.bankaccountback.model.dto.SuccessResponse;
 import com.sg.bankaccountback.model.Transaction;
 import com.sg.bankaccountback.service.AccountService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+@Api(description = "API for bank operations")
 @RestController
 @RequestMapping("/bank")
 public class AccountController {
@@ -25,6 +28,7 @@ public class AccountController {
     @Autowired
     AccountDao accountDao;
 
+    @ApiOperation(value = "get account statement")
     @GetMapping(value = "/statement/{id}")
     public ResponseEntity statement(@PathVariable int id) {
         Account account = accountDao.getAccountById(id);

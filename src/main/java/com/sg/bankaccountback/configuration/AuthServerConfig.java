@@ -29,7 +29,7 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
                 .withClient("SampleClientId")
                 .secret(passwordEncoder.encode("secret"))
                 .authorizedGrantTypes("client_credentials")
-                .scopes("read","write","trust")
+                .scopes("read","write","bank")
                 .autoApprove(true)
                 .accessTokenValiditySeconds(3600);
     }

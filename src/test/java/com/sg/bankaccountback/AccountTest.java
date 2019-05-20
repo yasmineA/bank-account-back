@@ -8,10 +8,12 @@ import com.sg.bankaccountback.model.Account;
 import com.sg.bankaccountback.model.Operation;
 import com.sg.bankaccountback.model.Status;
 import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.slf4j.Logger;
 
 import java.util.Date;
 
@@ -27,6 +29,10 @@ public class AccountTest {
     Account accountB = new Account(2, "MM Y A", "30003 01199 11150000182 66", 100,Status.BLOCKED, new Date());
     Account accountC = new Account(3, "MM Y A", "30003 01199 11150000182 66", 100,Status.CLOSED, new Date());
 
+
+    @BeforeEach
+    public void printS(){
+    }
 
     @Test
     public void testGetAccount(){
