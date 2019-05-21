@@ -55,10 +55,11 @@ A valid non expired token must be communicated in every request using the Author
 ```
 Authorization: bearer <token>
 ```
+To do simple all request passes `account id` in the url. Later we can improve by passing account number in body.
 
 - **Account statement**  
 
-  ```curl GET <endPoint>/statement/{id} --header 'Authorization : barear <token>```
+  ```curl GET <endPoint>/statement/{id} --header "Authorization : Bearer <token>"```
   return Json object
   
   ```
@@ -75,7 +76,7 @@ Authorization: bearer <token>
   
 - **Account history**  
 
- ``curl GET <endPoint>/history/{id} --header 'Authorization : barear <token> ``
+ ``curl GET <endPoint>/history/{id} --header "Authorization : Bearer <token>" ``
  
  return JSON Object
    ```
@@ -107,25 +108,23 @@ Authorization: bearer <token>
 
 - **Account deposit**  
 
- ```curl POST <endPoint>/deposit/{id} "Content-Type: application/json" -d <data> --header 'Authorization : barear <token>```
+ ```curl POST <endPoint>/deposit/{id} "Content-Type: application/json" -d <data> --header "Authorization : Bearer <token>"```
  
   The body of the request contains mandatory *amount* in a json of the form:
   
-   ``
-   curl GET <endPoint>/deposit/{id} "Content-Type: application/json" -d <data> --header 'Authorization : barear <token>
-   ``
+   ```curl GET <endPoint>/deposit/{id} "Content-Type: application/json" -d <data> --header "Authorization : Bearer <token>"```
    
     The body of the request contains mandatory *amount* in a json of the form:
   
-    ``
+    ```
     {
       "amount": 300
     }
-    ``
+    ```
   
   - **Account withdrawal**  
   
-   ``` curl POST <endPoint>/withdrawal/{id} "Content-Type: application/json" -d <data> --header 'Authorization : barear <token> ``
+   ``` curl POST <endPoint>/withdrawal/{id} "Content-Type: application/json" -d <data> --header "Authorization : Bearer <token>" ```
    
     The body of the request contains mandatory *amount* in a json of the form:
   
