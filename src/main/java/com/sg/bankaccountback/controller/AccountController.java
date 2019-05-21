@@ -18,20 +18,17 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-@Api(description = "API for bank operations")
+@Api(tags = {"api_account"})
 @RestController
 @RequestMapping("/bank")
 public class AccountController {
     @Autowired
     AccountService accountService;
 
-    @Autowired
-    AccountDao accountDao;
-
     @ApiOperation(value = "get account statement")
     @GetMapping(value = "/statement/{id}")
     public ResponseEntity statement(@PathVariable int id) {
-        Account account = accountDao.getAccountById(id);
+        Account account = accountService.history(id);
         if(account!=null){
             AccountDto accountDto = new ModelMapper().map(account, AccountDto.class);
             return new ResponseEntity(accountDto, HttpStatus.OK);
@@ -39,27 +36,27 @@ public class AccountController {
         return new ResponseEntity(new NotFoundException("ACCOUNT NOT FOUND"), HttpStatus.NOT_FOUND);
     }
 
+    @ApiOperation(value = "get account history")
     @GetMapping(value = "/history/{id}")
     public ResponseEntity history(@PathVariable int id) {
-        Account account = accountDao.getAccountById(id);
+        Account account = accountService.history(id);
         History history = new ModelMapper().map(account, History.class);
         return new ResponseEntity(history, HttpStatus.OK);
     }
 
+    @ApiOperation(value = "deposit funds")
     @PostMapping(value = "/deposit/{id}")
     public ResponseEntity deposit(@PathVariable("id") int id, @Valid @RequestBody Transaction transaction) {
-        Account account = accountDao.getAccountById(id);
-        accountDao.deposit(account, transaction.getAmount());
+        accountService.deposit(id, transaction.getAmount());
         return new ResponseEntity(new SuccessResponse("DEPOSIT WITH SUCCESS"), HttpStatus.OK);
     }
 
+    @ApiOperation(value = "withdrawal funds")
     @PostMapping(value = "/withdrawal/{id}")
     public ResponseEntity withdrawal(@PathVariable("id") int id, @Valid @RequestBody Transaction transaction) {
-
-        Account account = accountDao.getAccountById(id);
         if(!accountService.checkWithdrawalOperation(transaction.getOperation()))
            throw new BadRequestException("INVALID OPERATION, PLEASE CHOOSE BETWEEN 'WITHDRAWAL' OR 'WITHDRAWAL_ALL'");
-        accountDao.withdraw(account, transaction.getAmount(), transaction.getOperation());
+        accountService.withdraw(id, transaction.getAmount(), transaction.getOperation());
         return new ResponseEntity(new SuccessResponse("WITHDRAWAL WITH SUCCESS"), HttpStatus.OK);
     }
 }

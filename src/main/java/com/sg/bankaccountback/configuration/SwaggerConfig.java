@@ -24,6 +24,7 @@ public class SwaggerConfig {
     @Bean
     public Docket api(){
         return new Docket(DocumentationType.SWAGGER_2)
+                .tags(new Tag("api_account", "API for bank operations"))
                 .select()
                 .apis(RequestHandlerSelectors.basePackage(("com.sg.bankaccountback")))
                 .paths(PathSelectors.any())

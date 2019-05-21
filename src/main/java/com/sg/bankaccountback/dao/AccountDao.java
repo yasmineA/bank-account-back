@@ -37,21 +37,11 @@ public class AccountDao {
     This function deposit funds in account : create a new transaction and set the balance
     @param account the bank account
     @param amount the amount to depose in the account
-    @throws BadRequestException if amount < 0
-    @throws NotFoundException if account is null
     * */
     public void deposit(Account account, float amount) {
-        if(account!=null){
-            if(amount>0){
-                addTransaction(account, Operation.DEPOSIT, amount);
-                account.setBalance(account.getBalance()+amount);
-                account.setLastUpdate(new Date());
-            }
-            else
-                throw new BadRequestException("INVALID AMOUNT");
-        }
-        else
-            throw new NotFoundException("NULL ACCOUNT");
+        addTransaction(account, Operation.DEPOSIT, amount);
+        account.setBalance(account.getBalance()+amount);
+        account.setLastUpdate(new Date());
     }
 
     /*
@@ -61,28 +51,11 @@ public class AccountDao {
     @throws BadRequestException if amount > balance or amount<=0
     @throws NotFoundException if account is null
     * */
-    public void withdraw(Account account, float amount, Operation type) {
-        if(account!=null) {
-            if (account.getStatus()!=Status.ACTIVE)
-                throw new NotAllowedException(account.getStatus()+" ACCOUNT");
+    public void withdraw(Account account, float amount) {
+        addTransaction(account, Operation.WITHDRAWAL, amount);
+        account.setBalance(account.getBalance() - amount);
+        account.setLastUpdate(new Date());
 
-            float amountToRetrieve = amount;
-            if (type.equals(Operation.WITHDRAWAL_ALL)) amountToRetrieve = account.getBalance();
-
-            if(amountToRetrieve<=0)
-                throw new BadRequestException("INVALID AMOUNT");
-
-            if(amountToRetrieve>account.getBalance())
-                throw new BadRequestException("NOT ENOUGH FUNDS");
-
-            if (amountToRetrieve <= account.getBalance()) {
-                addTransaction(account, Operation.WITHDRAWAL, amountToRetrieve);
-                account.setBalance(account.getBalance() - amountToRetrieve);
-                account.setLastUpdate(new Date());
-            }
-        }
-        else
-            throw  new BadRequestException("NULL ACCOUNT");
     }
 
     /*

@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-@SpringBootApplication
+@SpringBootApplication //equivalent to @Configuration + @EnableAutoConfiguration + @ComponentScan
 @EnableResourceServer
 @EnableSwagger2
 public class BankAccountBackApplication {
