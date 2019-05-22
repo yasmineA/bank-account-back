@@ -13,7 +13,6 @@ pipeline {
         stage('Unit test') {
             steps {
                 junit '**//*target/surefire-reports/TEST-*.xml'
-                archive 'target*//*.jar'
             }
         }
     }
