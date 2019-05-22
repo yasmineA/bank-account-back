@@ -7,12 +7,12 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'mvn -B -DskipTests clean package'
+                sh 'mvn -Dmaven.test.failure.ignore=true install'
             }
-        }
-        stage('Unit test') {
-            steps {
-                junit '**//*target/surefire-reports/TEST-*.xml'
+            post {
+                success {
+                    junit 'target/surefire-reports/**/*.xml'
+                }
             }
         }
     }
