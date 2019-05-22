@@ -13,15 +13,19 @@ pipeline {
         }
 
         stage('Test') {
-            // 	If the maven build succeeded, archive the JUnit test reports
             steps {
-                junit 'target/surefire-reports/**/*.xml'
+                sh 'mvn test'
+            }
+            post {
+                always {
+                    junit 'target/surefire-reports/*.xml'
+                }
             }
         }
 
         stage('Deploy') {
             steps {
-                echo 'deploy project'
+                sh 'echo deploy project'
                 // copy bank-account-bank-0.0.1-SNAPSHOT.jar in server
                 // run app :  java -jar target/bank-account-bank-0.0.1-SNAPSHOT.jar
             }
