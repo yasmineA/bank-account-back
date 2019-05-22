@@ -11,8 +11,10 @@ pipeline {
             }
         }
         stage('Unit test') {
-            junit '**//*target/surefire-reports/TEST-*.xml'
-            archive 'target*//*.jar'
+            steps {
+                junit '**//*target/surefire-reports/TEST-*.xml'
+                archive 'target*//*.jar'
+            }
         }
     }
 }
