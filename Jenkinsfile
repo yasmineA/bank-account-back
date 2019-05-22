@@ -6,15 +6,24 @@ pipeline {
         }
     stages {
         stage('Build') {
-            // Call mvn, the version configured by the tools section will be first on the path
+            // cleanly build Java application (without running any tests).
             steps {
-                sh 'mvn -Dmaven.test.failure.ignore=true install'
+                sh 'mvn -B -DskipTests clean install'
             }
         }
+
         stage('Test') {
             // 	If the maven build succeeded, archive the JUnit test reports
             steps {
                 junit 'target/surefire-reports/**/*.xml'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo 'deploy project'
+                // copy bank-account-bank-0.0.1-SNAPSHOT.jar in server
+                // run app :  java -jar target/bank-account-bank-0.0.1-SNAPSHOT.jar
             }
         }
     }
