@@ -2,34 +2,23 @@ package com.sg.bankaccountback.rest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sg.bankaccountback.BankAccountBackApplication;
-import com.sg.bankaccountback.controller.AccountController;
-import com.sg.bankaccountback.dao.AccountDao;
 import com.sg.bankaccountback.model.Account;
 import com.sg.bankaccountback.model.Operation;
 import com.sg.bankaccountback.model.Status;
-import com.sg.bankaccountback.model.Transaction;
-import org.apache.catalina.User;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /*
