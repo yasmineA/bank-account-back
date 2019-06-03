@@ -1,10 +1,12 @@
 package com.sg.bankaccountback.service;
 
 import com.sg.bankaccountback.dao.AccountDao;
+import com.sg.bankaccountback.dao.BalanceRepo;
 import com.sg.bankaccountback.exception.BadRequestException;
 import com.sg.bankaccountback.exception.NotAllowedException;
 import com.sg.bankaccountback.exception.NotFoundException;
 import com.sg.bankaccountback.model.Account;
+import com.sg.bankaccountback.model.Balance;
 import com.sg.bankaccountback.model.Operation;
 import com.sg.bankaccountback.model.Status;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,9 @@ import java.util.Date;
 public class AccountService {
     @Autowired
     AccountDao accountDao;
+
+   /* @Autowired
+    BalanceRepo balanceRepo;*/
 
     /*
     This function check if an operation is an operation of Withdrawal
@@ -86,4 +91,9 @@ public class AccountService {
     public Account history(int id) {
         return accountDao.getAccountById(id);
     }
+
+    /*public Balance balance(int id) {
+        return balanceRepo.findById(id).get();
+    }*/
 }
+

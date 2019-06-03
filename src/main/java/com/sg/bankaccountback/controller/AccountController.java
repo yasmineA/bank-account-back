@@ -1,9 +1,11 @@
 package com.sg.bankaccountback.controller;
 
 import com.sg.bankaccountback.dao.AccountDao;
+import com.sg.bankaccountback.dao.BalanceRepo;
 import com.sg.bankaccountback.exception.BadRequestException;
 import com.sg.bankaccountback.exception.NotFoundException;
 import com.sg.bankaccountback.model.Account;
+import com.sg.bankaccountback.model.Balance;
 import com.sg.bankaccountback.model.dto.AccountDto;
 import com.sg.bankaccountback.model.dto.History;
 import com.sg.bankaccountback.model.dto.SuccessResponse;
@@ -22,6 +24,7 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/bank")
 public class AccountController {
+
     @Autowired
     AccountService accountService;
 
@@ -59,4 +62,10 @@ public class AccountController {
         accountService.withdraw(id, transaction.getAmount(), transaction.getOperation());
         return new ResponseEntity(new SuccessResponse("WITHDRAWAL WITH SUCCESS"), HttpStatus.OK);
     }
+
+    /*@ApiOperation(value = "get balance")
+    @PostMapping(value = "/balance/{id}")
+    public Balance balance(@PathVariable("id") int id) {
+        return accountService.balance(id);
+    }*/
 }

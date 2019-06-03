@@ -18,13 +18,16 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter{
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
-       httpSecurity.csrf()
-               .disable()
-               .requestMatchers()
-               .antMatchers( "/oauth/authorize")
-               .and()
-               .authorizeRequests()
-               .antMatchers("/bank/**").authenticated();
+     httpSecurity.csrf()
+        .disable()
+        .headers()
+        .frameOptions().disable()
+        .and()
+        .requestMatchers()
+        .antMatchers( "/oauth/authorize")
+        .and()
+        .authorizeRequests()
+        .antMatchers("/bank/**").authenticated();
 
     }
 
@@ -40,7 +43,7 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter{
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/v2/api-docs",
+        web.ignoring().antMatchers("/h2-console/**", "/v2/api-docs",
                 "/configuration/ui",
                 "/swagger-resources",
                 "/configuration/security",
