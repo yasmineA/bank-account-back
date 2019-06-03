@@ -19,8 +19,8 @@ public class AccountService {
     @Autowired
     AccountDao accountDao;
 
-   /* @Autowired
-    BalanceRepo balanceRepo;*/
+    @Autowired
+    BalanceRepo balanceRepo;
 
     /*
     This function check if an operation is an operation of Withdrawal
@@ -89,11 +89,15 @@ public class AccountService {
    @return Account if it exits otherwise return null
    * */
     public Account history(int id) {
-        return accountDao.getAccountById(id);
+        Account account  = accountDao.getAccountById(id);
+        if(account!=null)
+            return accountDao.getAccountById(id);
+        else
+         throw new NotFoundException("ACCOUNT NOT FOUND");
     }
 
-    /*public Balance balance(int id) {
+    public Balance balance(int id) {
         return balanceRepo.findById(id).get();
-    }*/
+    }
 }
 

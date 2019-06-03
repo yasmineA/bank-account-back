@@ -63,9 +63,9 @@ public class AccountController {
         return new ResponseEntity(new SuccessResponse("WITHDRAWAL WITH SUCCESS"), HttpStatus.OK);
     }
 
-    /*@ApiOperation(value = "get balance")
-    @PostMapping(value = "/balance/{id}")
+    @ApiOperation(value = "get balance")
+    @GetMapping(value = "/balance/{id}")
     public Balance balance(@PathVariable("id") int id) {
         return accountService.balance(id);
-    }*/
+    }
 }
